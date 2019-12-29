@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <classPathEntry location="D:\maven\repository\mysql\mysql-connector-java\5.1.45\mysql-connector-java-5.1.45.jar"/>
+
+    <context id="test" targetRuntime="MyBatis3">
+        <!-- 一些工具 -->
+       <!-- <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>-->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+        <!--<plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>-->
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+        <!--数据库链接 参数 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://192.168.0.128:3306/bwcar" userId="root"
+                        password="root">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
+			NUMERIC 类型解析为java.math.BigDecimal -->
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+        <!-- 生成模型的包名和位置 -->
+        <javaModelGenerator targetPackage="com.gsm.project.bwcar.pojo"
+                            targetProject="src/main/java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="true" />
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        <!-- 生成映射文件的包名和位置 -->
+        <sqlMapGenerator targetPackage="com.gsm.project.bwcar.dao"
+                         targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+        <!-- 生成DAO的包名和位置 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.gsm.project.bwcar.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!-- 要生成哪些表 -->
+        <table tableName="sys_menu" domainObjectName="SysMenu" mapperName="SysMenuDao"></table>
+        <table tableName="sys_role" domainObjectName="SysRole" mapperName="SysRoleDao"></table>
+        <table tableName="sys_user" domainObjectName="SysUser" mapperName="SysUserDao"></table>
+        <table tableName="sys_role_menu" domainObjectName="SysRoleMenu" mapperName="SysRoleMenuDao"></table>
+        <table tableName="sys_user_role" domainObjectName="SysUserRole" mapperName="SysUserRoleDao"></table>
+        <table tableName="sys_config" domainObjectName="SysConfig" mapperName="SysConfigDao"></table>
+        <table tableName="sys_log" domainObjectName="SysLog" mapperName="SysLogDao"></table>
+        <table tableName="schedule_job" domainObjectName="ScheduleJob" mapperName="ScheduleJobDao"></table>
+        <table tableName="schedule_job_log" domainObjectName="ScheduleJobLog" mapperName="ScheduleJobLogDao"></table>
+        <table tableName="activity" domainObjectName="Activity" mapperName="ActivityDao"></table>
+        <table tableName="activity_car" domainObjectName="ActivityCar" mapperName="ActivityCarDao"></table>
+        <table tableName="activity_category" domainObjectName="ActivityCategory" mapperName="ActivityCategoryDao"></table>
+        <table tableName="activity_channel" domainObjectName="ActivityChannel" mapperName="ActivityChannelDao"></table>
+        <table tableName="activity_dealer" domainObjectName="ActivityDealer" mapperName="ActivityDealerDao"></table>
+        <table tableName="activity_interface" domainObjectName="ActivityInterface" mapperName="ActivityInterfaceDao"></table>
+        <table tableName="activity_key" domainObjectName="ActivityKey" mapperName="ActivityKeyDao"></table>
+        <table tableName="activity_link" domainObjectName="ActivityLink" mapperName="ActivityLinkDao"></table>
+        <table tableName="activity_pdata" domainObjectName="ActivityPdata" mapperName="ActivityPdataDao"></table>
+        <table tableName="activity_tag" domainObjectName="ActivityTag" mapperName="ActivityTagDao"></table>
+        <table tableName="admin_menu_auth" domainObjectName="AdminMenuAuth" mapperName="AdminMenuAuthDao"></table>
+        <table tableName="admin_role" domainObjectName="AdminRole" mapperName="AdminRoleDao"></table>
+        <table tableName="admin_role_menu" domainObjectName="AdminRoleMenu" mapperName="AdminRoleMenuDao"></table>
+        <table tableName="admin_user" domainObjectName="AdminUser" mapperName="AdminUserDao"></table>
+        <table tableName="admin_user_role" domainObjectName="AdminUserRole" mapperName="AdminUserRoleDao"></table>
+        <table tableName="area" domainObjectName="Area" mapperName="AreaDao"></table>
+        <table tableName="article" domainObjectName="Article" mapperName="ArticleDao"></table>
+        <table tableName="article_action" domainObjectName="ArticleAction" mapperName="ArticleActionDao"></table>
+        <table tableName="article_category" domainObjectName="ArticleCategory" mapperName="ArticleCategoryDao"></table>
+        <table tableName="article_tag" domainObjectName="ArticleTag" mapperName="ArticleTagDao"></table>
+        <table tableName="car" domainObjectName="Car" mapperName="CarDao"></table>
+        <table tableName="car_brand" domainObjectName="CarBrand" mapperName="CarBrandDao"></table>
+        <table tableName="car_image" domainObjectName="CarImage" mapperName="CarImageDao"></table>
+        <table tableName="car_make" domainObjectName="CarMake" mapperName="CarMakeDao"></table>
+        <table tableName="car_model" domainObjectName="CarModel" mapperName="CarModelDao"></table>
+        <table tableName="car_model_image" domainObjectName="CarModelImage" mapperName="CarModelImageDao"></table>
+        <table tableName="car_select_list" domainObjectName="CarSelectList" mapperName="CarSelectListDao"></table>
+        <table tableName="choose_log" domainObjectName="ChooseLog" mapperName="ChooseLogDao"></table>
+        <table tableName="dict_answer" domainObjectName="DictAnswer" mapperName="DictAnswerDao"></table>
+        <table tableName="dict_brand_point" domainObjectName="DictBrandPoint" mapperName="DictBrandPointDao"></table>
+        <table tableName="dict_country" domainObjectName="DictCountry" mapperName="DictCountryDao"></table>
+        <table tableName="dict_model" domainObjectName="DictModel" mapperName="DictModelDao"></table>
+        <table tableName="dict_weight" domainObjectName="DictWeight" mapperName="DictWeightDao"></table>
+        <table tableName="member" domainObjectName="Member" mapperName="MemberDao"></table>
+        <table tableName="member_car" domainObjectName="MemberCar" mapperName="MemberCarDao"></table>
+        <table tableName="member_fav" domainObjectName="MemberFav" mapperName="MemberFavDao"></table>
+        <table tableName="member_login_log" domainObjectName="MemberLoginLog" mapperName="MemberLoginLogDao"></table>
+        <table tableName="member_point" domainObjectName="MemberPoint" mapperName="MemberPointDao"></table>
+        <table tableName="member_profile" domainObjectName="MemberProfile" mapperName="MemberProfileDao"></table>
+        <table tableName="member_profile_log" domainObjectName="MemberProfileLog" mapperName="MemberProfileLogDao"></table>
+        <table tableName="member_tag" domainObjectName="MemberTag" mapperName="MemberTagDao"></table>
+        <table tableName="member_token" domainObjectName="MemberToken" mapperName="MemberTokenDao"></table>
+        <table tableName="message" domainObjectName="Message" mapperName="MessageDao"></table>
+        <table tableName="message_sendlog" domainObjectName="MessageSendlog" mapperName="MessageSendlogDao"></table>
+        <table tableName="operate_log" domainObjectName="OperateLog" mapperName="OperateLogDao"></table>
+        <table tableName="product" domainObjectName="Product" mapperName="ProductDao"></table>
+        <table tableName="product_car" domainObjectName="ProductCar" mapperName="ProductCarDao"></table>
+        <table tableName="product_car_activity" domainObjectName="ProductCarActivity" mapperName="ProductCarActivityDao"></table>
+        <table tableName="sdk_interface" domainObjectName="SdkInterface" mapperName="SdkInterfaceDao"></table>
+        <table tableName="sdk_interface_info" domainObjectName="SdkInterfaceInfo" mapperName="SdkInterfaceInfoDao"></table>
+        <table tableName="sdk_interface_parm" domainObjectName="SdkInterfaceParm" mapperName="SdkInterfaceParmDao"></table>
+        <table tableName="sdk_interface_type" domainObjectName="SdkInterfaceType" mapperName="SdkInterfaceTypeDao"></table>
+        <table tableName="sdk_interface_udparm" domainObjectName="SdkInterfaceUdparm" mapperName="SdkInterfaceUdparmDao"></table>
+        <table tableName="sdk_temp" domainObjectName="SdkTemp" mapperName="SdkTempDao"></table>
+        <table tableName="tag" domainObjectName="Tag" mapperName="TagDao"></table>
+        <table tableName="tb_token" domainObjectName="TbToken" mapperName="TbTokenDao"></table>
+        <table tableName="tb_user" domainObjectName="TbUser" mapperName="TbUserDao"></table>
+        <table tableName="visit_log" domainObjectName="VisitLog" mapperName="VisitLogDao"></table>
+        <table tableName="visitor" domainObjectName="Visitor" mapperName="VisitorDao"></table>
+        <table tableName="car_param_type" domainObjectName="CarParamType" mapperName="CarParamTypeDao"></table>
+        <table tableName="car_params" domainObjectName="CarParams" mapperName="CarParamsDao"></table>
+        <table tableName="car_manufacturer" domainObjectName="CarManufacturer" mapperName="CarManufacturerDao"></table>
+    </context>
+</generatorConfiguration>
