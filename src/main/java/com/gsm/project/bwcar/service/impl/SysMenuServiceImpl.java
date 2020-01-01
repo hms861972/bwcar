@@ -13,7 +13,10 @@ import com.mchange.v2.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service("sysMenuService")
 public class SysMenuServiceImpl implements SysMenuService {
@@ -96,6 +99,23 @@ public class SysMenuServiceImpl implements SysMenuService {
         int i = sysMenuDao.updateByPrimaryKeySelective(sysMenu);
 
         return i>0?R.ok():R.error(R.OPERATION_ERROR_CODE,"修改失败!");
+    }
+
+    @Override
+    public List<String> findPermsByUserId(Long userId) {
+        List<String> ret = sysMenuDao.selectPermsByUserId(userId);
+        Set<String> set = new HashSet<String>();
+        for(String s : ret){
+            if (s != null && !s.equals("")){
+                String[] split = s.split(",");
+                for(String s1 : split){
+                    set.add(s1);
+                }
+            }
+        }
+        List<String> perms = new ArrayList<String>();
+        perms.addAll(set);
+        return perms;
     }
 
 

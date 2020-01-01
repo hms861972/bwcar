@@ -118,4 +118,9 @@ public class SysUserServiceImpl implements SysUserService {
         }
         return workbook;
     }
+
+    @Override
+    public SysUser findUserByUsername(String username) {
+        return sysUserDao.selectUserByName(username);
+    }
 }

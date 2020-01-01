@@ -27,4 +27,11 @@ public interface SysRoleDao {
     int updateByPrimaryKeySelective(SysRole record);
 
     int updateByPrimaryKey(SysRole record);
+
+    /**
+     * 根据用户id查询角色名称
+     * @param userId
+     * @return
+     */
+    List<String> selectRoleNameByUserId(@Param("userId") Long userId);
 }

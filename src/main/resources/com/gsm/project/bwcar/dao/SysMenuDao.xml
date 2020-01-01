@@ -289,4 +289,14 @@
     where type!=2
   </select>
 
+  <!--根据用户Id查询用户的菜单权限-->
+  <select id="selectPermsByUserId" resultType="string" parameterType="long">
+    SELECT DISTINCT m.perms
+    FROM sys_menu m
+    INNER JOIN sys_role_menu rm ON m.menu_id=rm.menu_id
+    INNER JOIN sys_user_role ur ON rm.role_id=ur.role_id
+    INNER JOIN sys_user u ON u.user_id=ur.user_id
+    WHERE u.user_id = #{userId}
+  </select>
+
 </mapper>

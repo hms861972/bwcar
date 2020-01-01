@@ -21,4 +21,6 @@ public interface SysUserService {
     R deleteByIds(List<Long> ids);
 
     Workbook exportUser();
+
+    SysUser findUserByUsername(String username);
 }

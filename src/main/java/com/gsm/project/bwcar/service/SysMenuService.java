@@ -48,4 +48,6 @@ public interface SysMenuService {
 
 
     R updateMenuById(SysMenu sysMenu);
+
+    List<String> findPermsByUserId(Long userId);
 }

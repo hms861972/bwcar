@@ -46,4 +46,12 @@ public interface SysMenuDao {
     int deleteMenuByIds(List<Long> ids);
 
     List<SysMenu> selectMenuTree();
+
+    /**
+     * 根据用户Id查询用户的菜单权限
+     * @param userId
+     * @return
+     */
+    List<String> selectPermsByUserId(@Param("userId") Long userId);
+
 }
