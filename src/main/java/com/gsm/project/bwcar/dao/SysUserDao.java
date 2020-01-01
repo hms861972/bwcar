@@ -36,7 +36,7 @@ public interface SysUserDao {
 
     List<SysUser> selectSysUserByPage(QueryDTO queryDTO);
 
-    int selectUserByName(String username);
+    SysUser selectUserByName(String username);
 
     int deleteUserByIds(List<Long> ids);
 

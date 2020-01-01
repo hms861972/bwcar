@@ -49,8 +49,8 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     public R save(SysUser sysUser) {
         //验证用户名唯一
-        int count = sysUserDao.selectUserByName(sysUser.getUsername());
-        if (count > 0){
+        SysUser count = sysUserDao.selectUserByName(sysUser.getUsername());
+        if (count != null){
             return R.error("用户名已存在!");
         }
         sysUser.setCreateTime(new Date());

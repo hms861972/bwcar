@@ -274,7 +274,7 @@
     </if>
   </select>
   <!--根据根据名称查找用户-->
-  <select id="selectUserByName" parameterType="string" resultType="int">
+  <select id="selectUserByName" parameterType="string" resultMap="BaseResultMap">
     select count(user_id)
     from sys_user
     where username = #{username,jdbcType=VARCHAR}

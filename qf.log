@@ -72,3 +72,4 @@
 2019-12-22 21:09:16 com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1514) DruidDataSource.java INFO {dataSource-9} closed
 2019-12-22 21:10:42 com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:785) DruidDataSource.java INFO {dataSource-10} inited
 2019-12-22 21:13:54 com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1514) DruidDataSource.java INFO {dataSource-10} closed
+2019-12-30 22:04:31 com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:785) DruidDataSource.java INFO {dataSource-1} inited
