@@ -6,7 +6,15 @@ public class UserVo {
     private String username;
     private String password;
     private String captcha;
-    private String rememberMe;
+    private boolean rememberMe;
+
+    public boolean isRememberMe() {
+        return rememberMe;
+    }
+
+    public void setRememberMe(boolean rememberMe) {
+        this.rememberMe = rememberMe;
+    }
 
     public String getUsername() {
         return username;
@@ -32,13 +40,7 @@ public class UserVo {
         this.captcha = captcha;
     }
 
-    public String getRememberMe() {
-        return rememberMe;
-    }
 
-    public void setRememberMe(String rememberMe) {
-        this.rememberMe = rememberMe;
-    }
 
     @Override
     public String toString() {

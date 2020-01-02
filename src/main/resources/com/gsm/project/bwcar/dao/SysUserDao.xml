@@ -275,7 +275,7 @@
   </select>
   <!--根据根据名称查找用户-->
   <select id="selectUserByName" parameterType="string" resultMap="BaseResultMap">
-    select count(user_id)
+    select <include refid="Base_Column_List"/>
     from sys_user
     where username = #{username,jdbcType=VARCHAR}
   </select>

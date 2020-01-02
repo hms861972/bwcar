@@ -90,7 +90,7 @@ var vm = new Vue({
     },
 	methods: {
 		refreshCode: function(){
-            this.src = "captcha.jpg?t=" + $.now();
+            this.src = "../sys/user/captcha.jpg?t=" + $.now();
 		},
 		login: function (event) {
 
@@ -107,7 +107,6 @@ var vm = new Vue({
                     }else{
                         vm.error = true;
                         vm.errorMsg = result.msg;
-
                         vm.refreshCode();
                     }
                 }
