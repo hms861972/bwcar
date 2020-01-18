@@ -14,6 +14,7 @@ public interface SysMenuService {
 
     /**
      * 查询菜单列表
+     *
      * @param queryDTO
      * @return
      */
@@ -21,6 +22,7 @@ public interface SysMenuService {
 
     /**
      * 删除菜单
+     *
      * @param ids
      * @return
      */
@@ -28,6 +30,7 @@ public interface SysMenuService {
 
     /**
      * 保存新增的菜单
+     *
      * @param sysMenu
      * @return
      */
@@ -35,12 +38,14 @@ public interface SysMenuService {
 
     /**
      * 查询所有
+     *
      * @return
      */
     R selectMenuTree();
 
     /**
      * 根据id查询某个菜单
+     *
      * @param menuId
      * @return
      */
@@ -50,4 +55,7 @@ public interface SysMenuService {
     R updateMenuById(SysMenu sysMenu);
 
     List<String> findPermsByUserId(Long userId);
+
+    R findUserMenu(Long userId);
+
 }
