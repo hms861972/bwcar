@@ -25,9 +25,9 @@ function getSelectedRow() {
         return;
     }
 
-    if(rows.length > 1){
+    if (rows.length > 1) {
         layer.alert("只能选择一条记录");
-        return ;
+        return;
     }
 
     return rows[0];
@@ -42,18 +42,18 @@ function hasPermission(permission) {
 }
 
 
-function doTask(id, msg, url){
+function doTask(id, msg, url) {
     var rows = getSelectedRows();
-    if(rows == null){
-        return ;
+    if (rows == null) {
+        return;
     }
     //提示确认框
     layer.confirm('您确定要' + msg + '所选数据吗？', {
         btn: ['确定', '取消'] //可以无限个按钮
-    }, function(index, layero){
+    }, function (index, layero) {
         var ids = new Array();
         //遍历所有选择的行数据，取每条数据对应的ID
-        $.each(rows, function(i, row) {
+        $.each(rows, function (i, row) {
             ids[i] = row[id];
         });
 
@@ -61,15 +61,15 @@ function doTask(id, msg, url){
             type: "POST",
             url: url,
             data: JSON.stringify(ids),
-            success : function(r) {
-                if(r.code === 0){
-                    layer.alert( msg + '成功');
+            success: function (r) {
+                if (r.code === 0) {
+                    layer.alert(msg + '成功');
                     $('#table').bootstrapTable('refresh');
-                }else{
+                } else {
                     layer.alert(r.msg);
                 }
             },
-            error : function() {
+            error: function () {
                 layer.alert('服务器没有返回数据，可能服务器忙，请重试');
             }
         });
