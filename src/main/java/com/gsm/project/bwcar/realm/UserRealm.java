@@ -28,27 +28,27 @@ public class UserRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         //得到用户名和密码
-        UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken)authenticationToken;
+        UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) authenticationToken;
         String username = usernamePasswordToken.getUsername();
         String password = new String(usernamePasswordToken.getPassword());
         SysUser byUsername = sysUserService.findUserByUsername(username);
-        if (byUsername == null){
+        if (byUsername == null) {
             throw new UnknownAccountException("用户名不存在");
         }
-        if (!byUsername.getPassword().equals(password)){
+        if (!byUsername.getPassword().equals(password)) {
             throw new IncorrectCredentialsException("密码不正确");
         }
-        if (byUsername.getStatus() == 0){
+        if (byUsername.getStatus() == 0) {
             throw new LockedAccountException("账户被冻结");
         }
-        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(byUsername,password,this.getName());
+        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(byUsername, password, this.getName());
         return info;
     }
 
     //授权
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        SysUser sysUser = (SysUser)principalCollection.getPrimaryPrincipal();
+        SysUser sysUser = (SysUser) principalCollection.getPrimaryPrincipal();
         Long userId = sysUser.getUserId();
         //用户的角色
         List<String> roleByUserId = sysRoleService.findRoleNameByUserId(userId);
