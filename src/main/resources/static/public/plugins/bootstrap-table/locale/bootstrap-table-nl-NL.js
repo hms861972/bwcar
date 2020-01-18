@@ -25,16 +25,16 @@
             return 'Geen resultaten gevonden';
         },
         formatRefresh: function () {
-           return 'Vernieuwen';
+            return 'Vernieuwen';
         },
         formatToggle: function () {
-          return 'Omschakelen';
+            return 'Omschakelen';
         },
         formatColumns: function () {
-          return 'Kolommen';
+            return 'Kolommen';
         },
         formatAllRows: function () {
-          return 'Alle';
+            return 'Alle';
         }
     };
 

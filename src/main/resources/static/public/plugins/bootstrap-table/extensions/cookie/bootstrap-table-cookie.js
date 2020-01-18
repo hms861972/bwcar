@@ -102,7 +102,7 @@
         return true;
     };
 
-    var calculateExpiration = function(cookieExpire) {
+    var calculateExpiration = function (cookieExpire) {
         var time = cookieExpire.replace(/[0-9]*/, ''); //s,mi,h,d,m,y
         cookieExpire = cookieExpire.replace(/[A-Za-z]/, ''); //number
 
@@ -310,7 +310,7 @@
 
         setCookie(this, cookieIds.columns, JSON.stringify(visibleColumns));
     };
-    
+
     BootstrapTable.prototype.selectPage = function (page) {
         _selectPage.apply(this, Array.prototype.slice.apply(arguments));
         setCookie(this, cookieIds.pageNumber, page);
@@ -321,7 +321,7 @@
         _onSearch.apply(this, target);
 
         if ($(target[0].currentTarget).parent().hasClass('search')) {
-          setCookie(this, cookieIds.searchText, this.searchText);
+            setCookie(this, cookieIds.searchText, this.searchText);
         }
     };
 

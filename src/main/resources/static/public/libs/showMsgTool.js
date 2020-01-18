@@ -1,4 +1,3 @@
-
 /**
  * 图标常量
  */
@@ -14,82 +13,82 @@ var iconConstants = {
     ERRORAUTO: 'ERRORAUTO'
 };
 
-var showAlert = function(msg, icon, dangerouslyUseHTMLString){
+var showAlert = function (msg, icon, dangerouslyUseHTMLString) {
     return showAlertCommon.call(this, {
-        msg : msg,
-        icon : icon,
-        dangerouslyUseHTMLString : dangerouslyUseHTMLString,
-        showClose : true
+        msg: msg,
+        icon: icon,
+        dangerouslyUseHTMLString: dangerouslyUseHTMLString,
+        showClose: true
     });
 };
 
-var showAlertCommon = function(params){
+var showAlertCommon = function (params) {
     var _self = this;
     var type, msg = params.msg, icon = params.icon;
     var dangerouslyUseHTMLString = params.dangerouslyUseHTMLString || false;
     var showClose = params.showClose;
 
-    if(iconConstants.SUCCESSAUTO === icon){
+    if (iconConstants.SUCCESSAUTO === icon) {
         type = "success";
-    }else if(iconConstants.INFOAUTO === icon){
+    } else if (iconConstants.INFOAUTO === icon) {
         type = "info";
-    }else if(iconConstants.WARNINGAUTO === icon){
+    } else if (iconConstants.WARNINGAUTO === icon) {
         type = "warning";
-    }else if(iconConstants.ERRORAUTO === icon){
+    } else if (iconConstants.ERRORAUTO === icon) {
         type = "error";
-    }else if(iconConstants.ERROR === icon){
+    } else if (iconConstants.ERROR === icon) {
         type = "error";
-    }else if(iconConstants.WARNING === icon){
+    } else if (iconConstants.WARNING === icon) {
         type = "warning";
-    }else if(iconConstants.SUCCESS === icon){
+    } else if (iconConstants.SUCCESS === icon) {
         type = "success";
-    }else if(iconConstants.INFO === icon){
+    } else if (iconConstants.INFO === icon) {
         type = "info";
     }
 
-    if(icon.indexOf("AUTO") > 0){
+    if (icon.indexOf("AUTO") > 0) {
         //2秒后自动关闭
         return _self.$message({
             type: type,
             message: msg,
             duration: 1500//显示时间, 毫秒。设为 0 则不会自动关闭
         });
-    }else{
+    } else {
         //不会自动关闭
         return _self.$message({
-            showClose : showClose,
-            dangerouslyUseHTMLString : dangerouslyUseHTMLString,
+            showClose: showClose,
+            dangerouslyUseHTMLString: dangerouslyUseHTMLString,
             message: msg,
             type: type,
-            duration : 0
+            duration: 0
         })
     }
 };
 
-var showAlertCanNotClose = function(msg, icon, dangerouslyUseHTMLString){
+var showAlertCanNotClose = function (msg, icon, dangerouslyUseHTMLString) {
     return showAlertCommon.call(this, {
-        msg : msg,
-        icon : icon,
-        dangerouslyUseHTMLString : dangerouslyUseHTMLString,
-        showClose : false
+        msg: msg,
+        icon: icon,
+        dangerouslyUseHTMLString: dangerouslyUseHTMLString,
+        showClose: false
     });
 };
 
-var showConfirm = function(msg, icon, confirmCallBack, cancelCallBack){
+var showConfirm = function (msg, icon, confirmCallBack, cancelCallBack) {
     var _self = this;
-   return  _self.$confirm(msg, "提示", {
-       confirmButtonText: "确定",
-       cancelButtonText: "取消",
-       type: 'warning',
+    return _self.$confirm(msg, "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: 'warning',
         center: true
-    }).then(function(){
-        if(confirmCallBack){
+    }).then(function () {
+        if (confirmCallBack) {
             confirmCallBack();
-        }else{
+        } else {
             showAlert.call(_self, "操作成功！", iconConstants.SUCCESSAUTO);
         }
-    }).catch(function(){
-       cancelCallBack && cancelCallBack();
+    }).catch(function () {
+        cancelCallBack && cancelCallBack();
     });
 };
 
@@ -99,17 +98,17 @@ var showConfirm = function(msg, icon, confirmCallBack, cancelCallBack){
  * @param icon
  * @param confirmCallBack
  */
-var showConfirmNoCancelCallBack = function(msg, icon, confirmCallBack){
+var showConfirmNoCancelCallBack = function (msg, icon, confirmCallBack) {
     var _self = this;
-    return  _self.$confirm(msg, "提示", {
+    return _self.$confirm(msg, "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: 'warning',
         center: true
-    }).then(function(){
-        if(confirmCallBack){
+    }).then(function () {
+        if (confirmCallBack) {
             confirmCallBack();
-        }else{
+        } else {
             showAlert.call(_self, "操作成功！", iconConstants.SUCCESSAUTO);
         }
     });

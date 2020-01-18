@@ -86,7 +86,7 @@
         });
     };
 
-    var setValues = function(that) {
+    var setValues = function (that) {
         var field = null,
             result = [],
             header = getCurrentHeader(that),
@@ -203,13 +203,13 @@
 
             header.off('mouseup', 'input').on('mouseup', 'input', function (event) {
                 var $input = $(this),
-                oldValue = $input.val();
+                    oldValue = $input.val();
 
                 if (oldValue === "") {
                     return;
                 }
 
-                setTimeout(function(){
+                setTimeout(function () {
                     var newValue = $input.val();
 
                     if (newValue === "") {
@@ -322,7 +322,7 @@
                 if (that.options.height) {
                     fixHeaderCSS(that);
                 }
-            }).on('column-switch.bs.table', function() {
+            }).on('column-switch.bs.table', function () {
                 setValues(that);
             });
         }
@@ -348,7 +348,7 @@
                 $btnClear = $btnGroup.find('div.export');
 
             if (!$btnClear.length) {
-              $btnClear = $([
+                $btnClear = $([
                     '<button class="btn btn-default" ',
                     sprintf('type="button" title="%s">', this.options.formatClearFilters()),
                     sprintf('<i class="%s %s"></i> ', this.options.iconsPrefix, this.options.icons.clear),
@@ -421,12 +421,12 @@
                 var thisColumn = that.columns[$.fn.bootstrapTable.utils.getFieldIndex(that.columns, key)];
                 var fval = fp[key].toLowerCase();
                 var value = item[key];
-                
+
                 // Fix #142: search use formated data
                 if (thisColumn && thisColumn.searchFormatter) {
                     value = $.fn.bootstrapTable.utils.calculateObjectValue(that.header,
-                    that.header.formatters[$.inArray(key, that.header.fields)],
-                    [value, item, i], value);
+                        that.header.formatters[$.inArray(key, that.header.fields)],
+                        [value, item, i], value);
                 }
 
                 if (thisColumn.filterStrictSearch) {
@@ -435,8 +435,7 @@
                         value.toString().toLowerCase() === fval.toString().toLowerCase())) {
                         return false;
                     }
-                }
-                else {
+                } else {
                     if (!($.inArray(key, that.header.fields) !== -1 &&
                         (typeof value === 'string' || typeof value === 'number') &&
                         (value + '').toLowerCase().indexOf(fval) !== -1)) {
