@@ -35,19 +35,20 @@ public class SysUserController {
 
     @RequestMapping("/findAll")
     @ResponseBody
-    public List<SysUser> findAll(){
+    public List<SysUser> findAll() {
         return sysUserService.findAll();
     }
+
     @RequestMapping("/list")
     @ResponseBody
-    public DataGridResult findSysUserByPage(QueryDTO queryDTO){
+    public DataGridResult findSysUserByPage(QueryDTO queryDTO) {
         return sysUserService.findSysUserByPage(queryDTO);
     }
 
     @RequestMapping("/captcha.jpg")
-    public void captcha(HttpServletResponse response){
+    public void captcha(HttpServletResponse response) {
         // 缓存设置-设置不缓存（可选操作）
-        response.setHeader("Cache-Control","no-store, no-cache");
+        response.setHeader("Cache-Control", "no-store, no-cache");
         // 设置响应内容
         response.setContentType("image/jpg");
         //生成验证码
@@ -59,7 +60,7 @@ public class SysUserController {
         try {
             //返回到页面
             ServletOutputStream outputStream = response.getOutputStream();
-            ImageIO.write(image,"jpg",outputStream);
+            ImageIO.write(image, "jpg", outputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -67,60 +68,80 @@ public class SysUserController {
 
     /**
      * 登录控制
+     *
      * @param user
      * @return
      */
     @RequestMapping("/login")
     @ResponseBody
-    public R login(@RequestBody UserVo user){
+    public R login(@RequestBody UserVo user) {
         //比对验证码
         String serverKaptcha = ShiroUtils.getKaptcha();
-        if(!serverKaptcha.equalsIgnoreCase(user.getCaptcha())){
+        if (!serverKaptcha.equalsIgnoreCase(user.getCaptcha())) {
             return R.error("验证码错误");
         }
         Subject subject = SecurityUtils.getSubject();
-        String newPass = MD5Utils.md5(user.getPassword(),user.getUsername(),1024);
-        UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(),newPass);
-        if(user.isRememberMe()){
+        String newPass = MD5Utils.md5(user.getPassword(), user.getUsername(), 1024);
+        UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), newPass);
+        if (user.isRememberMe()) {
             token.setRememberMe(true);
         }
-        subject.login(token);
-        //会去调用自定义的realm
+        try{
+            //会去调用自定义的realm
+            subject.login(token);
+        }catch (Exception e){
+            return R.error(e.getMessage());
+        }
         return R.ok();
     }
 
     @RequestMapping("/save")
     @ResponseBody
-    public R save(@RequestBody SysUser sysUser){
+    public R save(@RequestBody SysUser sysUser) {
 
         return sysUserService.save(sysUser);
     }
+
     @RequestMapping("/info/{userId}")
     @ResponseBody
-    public R updataInfo(@PathVariable Long userId){
+    public R updataInfo(@PathVariable Long userId) {
         return sysUserService.findUserById(userId);
     }
 
     @RequestMapping("/del")
     @ResponseBody
-    public R deleteByIds(@RequestBody List<Long> ids){
+    public R deleteByIds(@RequestBody List<Long> ids) {
         return sysUserService.deleteByIds(ids);
     }
+
     @RequestMapping("/export")
-    public void exportUser(HttpServletResponse response){
+    public void exportUser(HttpServletResponse response) {
         Workbook workbook = sysUserService.exportUser();
         try {
             //设置响应头
             response.setContentType("application/octet-stream");//所有文件都支持
             String fileName = "员工信息.xls";
-            fileName = URLEncoder.encode(fileName,"utf-8");
-            response.setHeader("content-disposition","attachment;filename="+fileName);
+            fileName = URLEncoder.encode(fileName, "utf-8");
+            response.setHeader("content-disposition", "attachment;filename=" + fileName);
             //文件下载
             workbook.write(response.getOutputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+    }
+
+    @RequestMapping("/logout")
+    public String logout(){
+        ShiroUtils.logout();
+        return "redirect:static/login.html";
+    }
+
+    @RequestMapping("/info")
+    @ResponseBody
+    public R loginUserInfo(){
+        SysUser sysUser = ShiroUtils.getUserEntity();
+        return R.ok().put("user",sysUser);
     }
 
 }
