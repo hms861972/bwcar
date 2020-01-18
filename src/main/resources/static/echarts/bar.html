@@ -6,11 +6,11 @@
     <script src="../public/libs/jquery.min.js"></script>
     <script src="../public/plugins/echarts/echarts.min.js"></script>
     <script>
-        $(function(){
+        $(function () {
             //1,初始化echarts
-            var  myEcharts = echarts.init(document.getElementById("bar"));
+            var myEcharts = echarts.init(document.getElementById("bar"));
             //2,设置图形显示的数据选项
-            var  option = {
+            var option = {
                 xAxis: {
                     type: 'category',
                     data: []
@@ -24,7 +24,7 @@
                 }]
             };
 
-            $.get("/sys/echarts/bar",function(r){
+            $.get("/sys/echarts/bar", function (r) {
                 //把真数据赋值给option
                 option.xAxis.data = r.xAxis;
                 option.series[0].data = r.seriesData;
@@ -38,9 +38,9 @@
 <body>
 
 
-    <div id="bar" style="width: 600px;height: 600px;">
+<div id="bar" style="width: 600px;height: 600px;">
 
-    </div>
+</div>
 
 </body>
 </html>

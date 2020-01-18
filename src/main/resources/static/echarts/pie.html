@@ -8,32 +8,32 @@
     <script src="../public/plugins/echarts/echarts.min.js"></script>
 
     <script>
-        $(function(){
+        $(function () {
             //1,初始化echarts对象
             var myEcharts = echarts.init(document.getElementById("pie"));
             //2, 指定图表的配置项和数据
             var option = {
-                title : {
+                title: {
                     text: '标签热度比例',
                     subtext: '真实有效',
-                    x:'center'
+                    x: 'center'
                 },
-                tooltip : {
+                tooltip: {
                     trigger: 'item',
                     formatter: "{a} <br/>{b} : {c} ({d}%)"
                 },
                 legend: {
                     orient: 'vertical',
                     left: 'left',
-                    data:[]
+                    data: []
                 },
-                series : [
+                series: [
                     {
                         name: '标签热度比例',
                         type: 'pie',
-                        radius : '55%',
+                        radius: '55%',
                         center: ['50%', '60%'],
-                        data:[],
+                        data: [],
                         itemStyle: {
                             emphasis: {
                                 shadowBlur: 10,
@@ -45,9 +45,9 @@
                 ]
             };
             $.ajax({
-                url:'/sys/echarts/pie',
-                dataType:'json',
-                success:function (r) {
+                url: '/sys/echarts/pie',
+                dataType: 'json',
+                success: function (r) {
                     console.log(r);
                     //给option赋值
                     //R.ok().put("legendData",legendData).put("seriesData",seriesData);
@@ -58,14 +58,14 @@
                 }
             });
             // 使用刚指定的配置项和数据显示图表。
-           // myEcharts.setOption(option);  //因为ajax是异步的
+            // myEcharts.setOption(option);  //因为ajax是异步的
         });
     </script>
 
 </head>
 <body>
 <!--图形的容器-->
-    <div id="pie" style="width: 400px;height: 400px;">
-    </div>
+<div id="pie" style="width: 400px;height: 400px;">
+</div>
 </body>
 </html>
