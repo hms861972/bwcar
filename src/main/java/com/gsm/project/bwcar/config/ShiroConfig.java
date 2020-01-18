@@ -23,10 +23,10 @@ public class ShiroConfig {
 
     //1,创建 SessionManager 管理会话
     @Bean(name = "sessionManager")//<bean class="">
-    public SessionManager sessionManager(){
+    public SessionManager sessionManager() {
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
         //设置过期时间
-        sessionManager.setGlobalSessionTimeout(1000*60*30);
+        sessionManager.setGlobalSessionTimeout(1000 * 60 * 30);
         //设置后台线程  清理过期的会话
         sessionManager.setSessionValidationSchedulerEnabled(true);
         //设置地址比拼接sessionid
@@ -36,8 +36,8 @@ public class ShiroConfig {
     }
 
     //2,创建SecurityManager
-    @Bean(name="securityManager")
-    public SecurityManager securityManager(SessionManager sessionManager, UserRealm userRealm){
+    @Bean(name = "securityManager")
+    public SecurityManager securityManager(SessionManager sessionManager, UserRealm userRealm) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setSessionManager(sessionManager);
         //缓存管理
@@ -47,17 +47,17 @@ public class ShiroConfig {
         //cookie管理
         CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
         Cookie cookie = cookieRememberMeManager.getCookie();
-        cookie.setMaxAge(60*60*24*3);
+        cookie.setMaxAge(60 * 60 * 24 * 3);
         cookie.setPath("/");
         securityManager.setRememberMeManager(cookieRememberMeManager);
         //设置自定义realm
         securityManager.setRealm(userRealm);
-        return  securityManager;
+        return securityManager;
     }
 
     //3,创建ShiroFilter
-    @Bean(name="shiroFilter")
-    public ShiroFilterFactoryBean  shiroFilterFactoryBean(SecurityManager securityManager){
+    @Bean(name = "shiroFilter")
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         //设置登录页面
@@ -66,33 +66,33 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setUnauthorizedUrl("unauthorized.html");
         //拦截的路径的详细设置
         //什么Map是存取有序的？
-        Map<String,String> map = new LinkedHashMap<>();
-        map.put("/sys/user/login","anon");//匿名访问
-        map.put("/sys/user/captcha.jpg","anon");//验证码放行
-        map.put("/static/public/**","anon");
-        map.put("static/json/**","anon");
-        map.put("/**","authc");
+        Map<String, String> map = new LinkedHashMap<>();
+        map.put("/sys/user/login", "anon");//匿名访问
+        map.put("/sys/user/captcha.jpg", "anon");//验证码放行
+        map.put("/static/public/**", "anon");
+        map.put("static/json/**", "anon");
+        map.put("/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
-        return  shiroFilterFactoryBean;
+        return shiroFilterFactoryBean;
     }
 
     //4,BeanLifeCycle  生命周期
-    @Bean(name="lifecycleBeanPostProcessor")
-    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor(){
+    @Bean(name = "lifecycleBeanPostProcessor")
+    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
         LifecycleBeanPostProcessor lifecycleBeanPostProcessor = new LifecycleBeanPostProcessor();
-        return  lifecycleBeanPostProcessor;
+        return lifecycleBeanPostProcessor;
     }
 
     //5,开启shiro的注解
     @Bean(name = "defaultAdvisorAutoProxyCreator")
-    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator(){
+    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
         DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
         defaultAdvisorAutoProxyCreator.setProxyTargetClass(true);//cglib方式
-        return  defaultAdvisorAutoProxyCreator;
+        return defaultAdvisorAutoProxyCreator;
     }
 
-    @Bean(name="authorizationAttributeSourceAdvisor")
-    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager){
+    @Bean(name = "authorizationAttributeSourceAdvisor")
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager) {
         AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
         advisor.setSecurityManager(securityManager);
         return advisor;
