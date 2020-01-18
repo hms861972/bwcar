@@ -3,7 +3,9 @@ package com.gsm.project.bwcar.dao;
 import com.gsm.project.bwcar.pojo.Product;
 import com.gsm.project.bwcar.pojo.ProductExample;
 import com.gsm.project.bwcar.pojo.ProductWithBLOBs;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface ProductDao {

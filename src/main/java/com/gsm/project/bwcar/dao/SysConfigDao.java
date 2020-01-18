@@ -2,7 +2,9 @@ package com.gsm.project.bwcar.dao;
 
 import com.gsm.project.bwcar.pojo.SysConfig;
 import com.gsm.project.bwcar.pojo.SysConfigExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface SysConfigDao {

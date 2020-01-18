@@ -2,7 +2,9 @@ package com.gsm.project.bwcar.dao;
 
 import com.gsm.project.bwcar.pojo.Area;
 import com.gsm.project.bwcar.pojo.AreaExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface AreaDao {

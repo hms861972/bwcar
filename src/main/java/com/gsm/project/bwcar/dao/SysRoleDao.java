@@ -2,7 +2,9 @@ package com.gsm.project.bwcar.dao;
 
 import com.gsm.project.bwcar.pojo.SysRole;
 import com.gsm.project.bwcar.pojo.SysRoleExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface SysRoleDao {
@@ -30,6 +32,7 @@ public interface SysRoleDao {
 
     /**
      * 根据用户id查询角色名称
+     *
      * @param userId
      * @return
      */

@@ -3,7 +3,9 @@ package com.gsm.project.bwcar.dao;
 import com.gsm.project.bwcar.dto.QueryDTO;
 import com.gsm.project.bwcar.pojo.SysMenu;
 import com.gsm.project.bwcar.pojo.SysMenuExample;
+
 import java.util.List;
+import java.util.Map;
 
 import com.gsm.project.bwcar.pojo.vo.SysMenuVo;
 import org.apache.ibatis.annotations.Param;
@@ -33,6 +35,7 @@ public interface SysMenuDao {
 
     /**
      * 查询菜单集合
+     *
      * @param queryDTO
      * @return
      */
@@ -40,6 +43,7 @@ public interface SysMenuDao {
 
     /**
      * 批量删除
+     *
      * @param ids
      * @return
      */
@@ -49,9 +53,14 @@ public interface SysMenuDao {
 
     /**
      * 根据用户Id查询用户的菜单权限
+     *
      * @param userId
      * @return
      */
     List<String> selectPermsByUserId(@Param("userId") Long userId);
+
+    List<Map<String,Object>> findDirMenuByUserId(@Param("userId") Long userId);
+
+    List<Map<String,Object>> findMenuNotButtonByUserId(@Param("userId") Long userId,@Param("parentId") Long parentId);
 
 }

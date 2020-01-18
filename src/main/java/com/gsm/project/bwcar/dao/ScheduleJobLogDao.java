@@ -2,7 +2,9 @@ package com.gsm.project.bwcar.dao;
 
 import com.gsm.project.bwcar.pojo.ScheduleJobLog;
 import com.gsm.project.bwcar.pojo.ScheduleJobLogExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface ScheduleJobLogDao {

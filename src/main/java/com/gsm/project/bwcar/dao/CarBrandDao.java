@@ -2,7 +2,9 @@ package com.gsm.project.bwcar.dao;
 
 import com.gsm.project.bwcar.pojo.CarBrand;
 import com.gsm.project.bwcar.pojo.CarBrandExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface CarBrandDao {

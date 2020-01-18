@@ -2,7 +2,9 @@ package com.gsm.project.bwcar.dao;
 
 import com.gsm.project.bwcar.pojo.ActivityInterface;
 import com.gsm.project.bwcar.pojo.ActivityInterfaceExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface ActivityInterfaceDao {
