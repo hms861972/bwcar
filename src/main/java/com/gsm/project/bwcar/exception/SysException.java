@@ -6,7 +6,7 @@ package com.gsm.project.bwcar.exception;
 public class SysException extends Exception {
     private String errorMsg;
 
-    public String getErrorMsg(){
+    public String getErrorMsg() {
         return errorMsg;
     }
 
@@ -26,6 +26,7 @@ public class SysException extends Exception {
         super(message, cause);
         this.errorMsg = errorMsg;
     }
+
     public SysException(Throwable cause) {
         super(cause);
     }
